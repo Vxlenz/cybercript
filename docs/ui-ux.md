@@ -13,6 +13,8 @@ La mejora aplica las recomendaciones de legibilidad, jerarquía, navegación, se
 
 ## Verificación
 
+El acabado tecnológico conserva la paleta y la estructura: cuadrícula discreta en fondos y cabeceras de módulos, esquinas de precisión, anillos y puntos de luz en el gráfico existente, tipografía monoespaciada solo en etiquetas e índices y estados suaves de navegación y tarjetas. Los efectos decorativos no reciben eventos, no desplazan controles y no agregan animaciones continuas. El realce al pasar el cursor se limita a dispositivos con puntero; las acciones siguen disponibles por toque y teclado.
+
 La revisión visual usa pantallas de 320, 375, 768 y 1100 px, con copias aisladas de la interfaz sin cuentas ni escrituras de Firebase. Las vistas de prueba se mantienen en la rama de revisión y no forman parte del sitio de producción.
 
 `validate-update.cjs` comprueba navegación, catálogo, foco, los 70 pasos de aprendizaje, progreso y flujos de cuenta con un servicio simulado. No comprueba entrega real de correo.
