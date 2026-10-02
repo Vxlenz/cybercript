@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 230" role="img" aria-labelledby="title desc">
+  <title id="title">Semilla de aleatoriedad para criptografía</title>
+  <desc id="desc">Un mosaico de formas impredecibles da paso a una secuencia de datos y una llave protegida.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f9e6d8"/><stop offset="1" stop-color="#d9eadd"/></linearGradient>
+    <linearGradient id="ribbon" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e9a759"/><stop offset="1" stop-color="#e27785"/></linearGradient>
+    <clipPath id="frame"><rect x="34" y="29" width="222" height="168" rx="16"/></clipPath>
+  </defs>
+  <rect width="560" height="230" rx="18" fill="url(#background)"/>
+  <rect x="34" y="29" width="222" height="168" rx="16" fill="#293f3c"/>
+  <g clip-path="url(#frame)">
+    <path d="M30 153C63 24 91 54 125 143s55 83 75-13S251 35 280 27" fill="none" stroke="url(#ribbon)" stroke-width="29" opacity=".94"/>
+    <path d="M-10 105c55 44 75-42 123-46s61 76 115 60 50-82 94-78" fill="none" stroke="#7cc9af" stroke-width="23" opacity=".75"/>
+    <path d="M5 208c32-76 81-48 105-75s40-71 61-49 4 96 83 115" fill="none" stroke="#dbc0ea" stroke-width="19" opacity=".73"/>
+    <g fill="#f7e89b"><circle cx="51" cy="64" r="5"/><circle cx="115" cy="176" r="4"/><circle cx="203" cy="70" r="6"/><circle cx="236" cy="150" r="4"/></g>
+  </g>
+  <path d="M275 111h52" fill="none" stroke="#2d6354" stroke-width="3" stroke-linecap="round" stroke-dasharray="5 7"/>
+  <path d="m320 104 13 7-13 7" fill="#2d6354"/>
+  <rect x="342" y="29" width="182" height="168" rx="16" fill="#173534"/>
+  <g font-family="monospace" font-size="18" fill="#d6f093" letter-spacing="3"><text x="360" y="68">7A 4F 09</text><text x="360" y="99">C2 8D 31</text><text x="360" y="130">5E 1B F0</text></g>
+  <path d="M448 149v9m-14 0v-9a7 7 0 0 1 14 0m-22 9h30v23h-30z" fill="none" stroke="#f2bd79" stroke-width="3" stroke-linejoin="round"/>
+  <circle cx="441" cy="168" r="2.5" fill="#f2bd79"/>
+</svg>

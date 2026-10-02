@@ -1,0 +1,23 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /progress/{userId} {
+      function owner() {
+        return request.auth != null
+          && request.auth.uid == userId
+          && request.auth.token.email_verified == true;
+      }
+      function validProgress() {
+        return request.resource.data.keys().hasAll(['payload', 'updatedAt'])
+          && request.resource.data.keys().hasOnly(['payload', 'updatedAt'])
+          && request.resource.data.payload is string
+          && request.resource.data.payload.size() <= 30000
+          && request.resource.data.updatedAt is timestamp;
+      }
+      allow get: if owner();
+      allow list: if false;
+      allow create, update: if owner() && validProgress();
+      allow delete: if owner();
+    }
+  }
+}

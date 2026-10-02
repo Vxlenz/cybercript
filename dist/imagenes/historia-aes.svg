@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 230" role="img" aria-labelledby="t d">
+<title id="t">Matriz de datos del cifrado AES</title><desc id="d">AES representa un bloque en una matriz de cuatro por cuatro; sus transformaciones y la clave cambian sus valores.</desc>
+<rect width="560" height="230" rx="20" fill="#e1f0e8"/>
+<text x="31" y="43" font-family="sans-serif" font-size="21" font-weight="700" fill="#245b4e">AES</text><text x="522" y="43" text-anchor="end" font-family="sans-serif" font-size="13" fill="#496f60">BLOQUE DE 128 BITS</text>
+<g font-family="sans-serif" font-size="14" font-weight="700" fill="#245b4e"><text x="46" y="74">DATOS</text><text x="417" y="74">CIFRADO</text></g>
+<g fill="#fff" stroke="#669783" stroke-width="3"><rect x="37" y="88" width="133" height="108" rx="10"/><rect x="391" y="88" width="133" height="108" rx="10"/></g>
+<g stroke="#8bb5a1" stroke-width="2"><path d="M70 89v106M103 89v106M136 89v106M38 115h131M38 142h131M38 169h131M424 89v106M457 89v106M490 89v106M392 115h131M392 142h131M392 169h131"/></g>
+<g fill="#9ec8ad"><rect x="39" y="90" width="30" height="24"/><rect x="104" y="143" width="31" height="25"/><rect x="137" y="116" width="31" height="25"/></g><g fill="#245b4e"><rect x="392" y="170" width="31" height="25"/><rect x="425" y="116" width="31" height="25"/><rect x="458" y="90" width="31" height="24"/><rect x="491" y="143" width="31" height="25"/></g>
+<path d="M180 141h29m-10-9 10 9-10 9M351 141h30m-10-9 10 9-10 9" fill="none" stroke="#569078" stroke-width="4"/><rect x="214" y="75" width="133" height="116" rx="17" fill="#245b4e"/><g font-family="sans-serif" text-anchor="middle"><text x="280" y="103" font-size="14" font-weight="700" fill="#d8f980">TRANSFORMAR</text><text x="280" y="129" font-size="13" fill="#fff">sustituir · mover</text><text x="280" y="149" font-size="13" fill="#fff">mezclar</text><text x="280" y="177" font-size="12" fill="#d8f980">+ clave secreta</text></g>
+</svg>
