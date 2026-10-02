@@ -411,7 +411,7 @@ body{background-color:#f5f7f2;background-image:linear-gradient(#245b4e04 1px,tra
 .sidebar nav .nav-items a{font-size:14px;min-height:44px}.nav-group summary{font-size:14px;min-height:46px}.sidebar-bottom small{color:#c1d2c8}.sidebar :focus-visible,.mobile-menu :focus-visible{outline-color:var(--lime);outline-offset:-3px}.home-hero :focus-visible,.home-resume :focus-visible{outline-color:var(--lime)}
 .password-control{position:relative;display:flex;align-items:center;min-width:0}.password-control input,#entry-form .password-control input,.account-panel .password-control input{padding-right:90px}.password-control>button{position:absolute;right:4px;top:50%;transform:translateY(-50%);min-width:78px;min-height:44px;padding:7px 9px;border:0;border-radius:7px;background:transparent;color:#315d48;font-size:13px;font-weight:650}.password-control>button:hover{background:#eaf1e3}.password-control>button:focus-visible{outline-offset:-2px}
 #entry-form label{font-size:14px}#entry-form input{font-size:16px}.access-card>p.muted,.recovery-link,.terms-check,.terms-check button,.guest-note,.setup-note{font-size:14px}.access-footer{font-size:12px;color:#53654c}.access-divider{font-size:11px;color:#556a4b}.access-status{font-size:14px;line-height:1.65}.access-status.is-success{color:#2e653e;background:#eaf3df;padding:12px;border-radius:9px}[aria-invalid="true"]{border-color:#aa3333!important;box-shadow:0 0 0 2px #aa333312}
-.text-button:not(#open-terms){min-height:44px}.account-tabs button{min-height:44px}.terms-close{width:44px;height:44px;font-size:27px}.button-spinner{width:16px;height:16px;border:2px solid #ffffff60;border-top-color:#fff;border-radius:50%;animation:buttonSpin .7s linear infinite;flex-shrink:0}
+.text-button:where(:not(#open-terms)){min-height:44px}.account-tabs button{min-height:44px}.terms-close{width:44px;height:44px;font-size:27px}.button-spinner{width:16px;height:16px;border:2px solid #ffffff60;border-top-color:#fff;border-radius:50%;animation:buttonSpin .7s linear infinite;flex-shrink:0}
 body.mobile-menu-open{overflow:hidden}
 .mobile-menu{width:calc(100% - 28px);max-width:380px;height:calc(100svh - 28px);max-height:calc(100svh - 28px);margin:14px auto 14px 14px;padding:0;background:#172f2a;color:#f0f7ed;border:1px solid #426353;border-radius:21px;box-shadow:0 20px 70px #122b2840;overflow:hidden}
 .mobile-menu[open]{display:flex;flex-direction:column;animation:catalogReveal .25s cubic-bezier(.22,1,.36,1) both}.mobile-menu::backdrop{background:#102b2bb5;backdrop-filter:blur(5px)}
@@ -478,6 +478,7 @@ h1,h2,h3{text-wrap:balance}
 }
 @media(max-width:1100px){:root{--sidebar-width:14rem}}
 @media(max-width:960px){
+ html{scrollbar-gutter:auto}
  .sidebar{display:none}
  .app{display:block}
  .topbar{height:auto;min-height:4.5rem;padding:.75rem max(1rem,env(safe-area-inset-left));gap:.75rem}
@@ -493,6 +494,7 @@ h1,h2,h3{text-wrap:balance}
  .account-shortcut #account-shortcut-label{display:block;max-width:10rem;font-size:.8125rem;white-space:normal;line-height:1.4}
  main,.home-active main,.learning-active main{padding:2rem var(--space-page) 2.5rem;max-width:58rem}
  .home-hero{grid-template-columns:1fr;padding:2rem;gap:1.5rem}
+ .home-hero-copy>p{font-size:1rem;line-height:1.7}
  .home-step-grid{grid-template-columns:1fr;gap:1rem}
  .home-step{padding:1.5rem}
  .home-section-heading{display:block}
@@ -577,9 +579,9 @@ h1,h2,h3{text-wrap:balance}
  .mini-example,.practice-caption,.focus-details,.focus-card .field,.focus-card .lesson-options legend{font-size:.9375rem;line-height:1.65}
  .mini-example{padding:1rem}
  .stage-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;padding-top:1.5rem;align-items:stretch}
- .stage-nav .btn{min-width:0;min-height:3rem;padding:.75rem;font-size:.9375rem;white-space:normal;text-align:center}
+ .stage-nav .btn{width:100%;min-width:0;min-height:3rem;padding:.75rem;font-size:.9375rem;white-space:normal;text-align:center}
  .stage-nav .btn:only-child{grid-column:1/-1}
- .stage-nav .text-button{grid-column:1/-1;min-height:3rem;font-size:.9375rem}
+ .stage-nav .text-button{width:100%;min-height:3rem;font-size:.9375rem;line-height:1.5}
  .decision-buttons{gap:.75rem}
  .decision-buttons .btn{min-height:3rem;font-size:.9375rem}
  .card,.account-panel{padding:1.25rem;border-radius:var(--radius-card)}
