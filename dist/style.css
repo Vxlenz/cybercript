@@ -411,7 +411,7 @@ body{background-color:#f5f7f2;background-image:linear-gradient(#245b4e04 1px,tra
 .sidebar nav .nav-items a{font-size:14px;min-height:44px}.nav-group summary{font-size:14px;min-height:46px}.sidebar-bottom small{color:#c1d2c8}.sidebar :focus-visible,.mobile-menu :focus-visible{outline-color:var(--lime);outline-offset:-3px}.home-hero :focus-visible,.home-resume :focus-visible{outline-color:var(--lime)}
 .password-control{position:relative;display:flex;align-items:center;min-width:0}.password-control input,#entry-form .password-control input,.account-panel .password-control input{padding-right:90px}.password-control>button{position:absolute;right:4px;top:50%;transform:translateY(-50%);min-width:78px;min-height:44px;padding:7px 9px;border:0;border-radius:7px;background:transparent;color:#315d48;font-size:13px;font-weight:650}.password-control>button:hover{background:#eaf1e3}.password-control>button:focus-visible{outline-offset:-2px}
 #entry-form label{font-size:14px}#entry-form input{font-size:16px}.access-card>p.muted,.recovery-link,.terms-check,.terms-check button,.guest-note,.setup-note{font-size:14px}.access-footer{font-size:12px;color:#53654c}.access-divider{font-size:11px;color:#556a4b}.access-status{font-size:14px;line-height:1.65}.access-status.is-success{color:#2e653e;background:#eaf3df;padding:12px;border-radius:9px}[aria-invalid="true"]{border-color:#aa3333!important;box-shadow:0 0 0 2px #aa333312}
-.text-button:not(#open-terms){min-height:44px}.account-tabs button{min-height:44px}.terms-close{width:44px;height:44px;font-size:27px}.button-spinner{width:16px;height:16px;border:2px solid #ffffff60;border-top-color:#fff;border-radius:50%;animation:buttonSpin .7s linear infinite;flex-shrink:0}
+.text-button:where(:not(#open-terms)){min-height:44px}.account-tabs button{min-height:44px}.terms-close{width:44px;height:44px;font-size:27px}.button-spinner{width:16px;height:16px;border:2px solid #ffffff60;border-top-color:#fff;border-radius:50%;animation:buttonSpin .7s linear infinite;flex-shrink:0}
 body.mobile-menu-open{overflow:hidden}
 .mobile-menu{width:calc(100% - 28px);max-width:380px;height:calc(100svh - 28px);max-height:calc(100svh - 28px);margin:14px auto 14px 14px;padding:0;background:#172f2a;color:#f0f7ed;border:1px solid #426353;border-radius:21px;box-shadow:0 20px 70px #122b2840;overflow:hidden}
 .mobile-menu[open]{display:flex;flex-direction:column;animation:catalogReveal .25s cubic-bezier(.22,1,.36,1) both}.mobile-menu::backdrop{background:#102b2bb5;backdrop-filter:blur(5px)}
@@ -424,3 +424,193 @@ body.mobile-menu-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){.mobile-menu[open],.button-spinner{animation:none}}
 .nav-catalog-button{min-height:44px;font-size:14px}
 @media(max-width:760px){.home-actions{flex-wrap:wrap}.home-actions .btn{font-size:14px;flex-basis:170px}.home-visual-note{font-size:12px}}
+
+/* UI UX Pro Max: navegación estable, lectura cómoda y controles táctiles. */
+:root{--sidebar-width:15.5rem;--space-page:clamp(1rem,3.2vw,3rem);--surface-raised:#fff;--radius-card:1.25rem}
+.ui-icon{display:inline-block;width:1.5rem;height:1.5rem;vertical-align:middle;flex-shrink:0}
+.nav-group-icon .ui-icon,.nav-items a>span .ui-icon,.nav-catalog-button .ui-icon{width:1.125rem;height:1.125rem}
+.nav-chevron .ui-icon{width:1rem;height:1rem}
+.module-icon .ui-icon{width:2rem;height:2rem}
+.resume-symbol .ui-icon{width:1.5rem;height:1.5rem}
+html{scrollbar-gutter:stable}
+h1,h2,h3{text-wrap:balance}
+.sidebar{width:var(--sidebar-width);min-width:var(--sidebar-width);max-width:var(--sidebar-width);flex:0 0 var(--sidebar-width);height:100dvh;overflow-x:hidden;overflow-y:auto;scrollbar-gutter:stable}
+.sidebar nav{grid-template-columns:minmax(0,1fr);flex:0 0 auto;min-width:0}
+.sidebar .brand,.sidebar-bottom{flex-shrink:0}
+.nav-group,.nav-content,.nav-items{min-width:0}
+.nav-group summary{cursor:pointer}
+.nav-group summary>span:not(.nav-group-icon):not(.nav-chevron){min-width:0;flex:1}
+.nav-group summary small,.nav-chevron{flex-shrink:0}
+.nav-items a{min-width:0;overflow-wrap:anywhere}
+.nav-items a>small{flex-shrink:0}
+.nav-catalog-button{white-space:normal;line-height:1.5;text-align:left}
+.shell,.entry-page>*,.home-hero>*,.module-body,.account-panel,.columns>*{min-width:0}
+.module-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.25rem}
+.module-card{display:flex;flex-direction:column;border-radius:var(--radius-card)}
+.module-top{height:6rem;flex-direction:row;padding:1.25rem 1.5rem}
+.module-body{padding:1.5rem}
+.module-body p,.home-step p,.home-shortcuts p,.home-section-heading>p,.home-start p,.home-modules p{font-size:1rem;line-height:1.65}
+.module-body h3{font-size:1.125rem}
+.meta{flex-wrap:wrap;row-gap:.5rem;font-size:.8125rem}
+.module-body .btn,.home-actions .btn,.home-modules>.btn{min-height:3rem;font-size:.9375rem;line-height:1.5}
+.btn:active,.catalog-close:active,.mobile-menu-toggle:active{filter:brightness(.94)}
+.focus-copy{color:var(--muted);font-size:1.0625rem;line-height:1.75}
+.focus-card .lesson-options,.focus-card .decision-buttons{width:100%}
+.focus-card .lesson-choice{min-width:0;gap:.875rem;text-align:left}
+.focus-card .choice-letter{flex-shrink:0}
+.catalog-section-title{gap:1rem;flex-wrap:wrap}
+.catalog-section-title>span{white-space:normal}
+.modules-dialog .module-body p{font-size:1rem;line-height:1.65;min-height:0}
+.modules-dialog .module-card{display:flex;flex-direction:column}
+.catalog-stage{font-size:.8125rem}
+.entry-page{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.entry-story h1{max-width:14ch}
+.access-card h2{max-width:18ch}
+.access-card>.muted,.guest-note{line-height:1.65}
+.terms-check{align-items:flex-start}
+.terms-check input{width:1.25rem;height:1.25rem;flex-basis:1.25rem;margin-top:.2rem}
+.entry-signature,.access-footer{font-size:.75rem;letter-spacing:normal}
+
+@media(max-width:1200px) and (min-width:961px){
+ .module-grid,.modules-dialog .module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-hero{grid-template-columns:1fr}
+ .home-visual{width:100%;min-height:16rem;max-width:24rem;margin:auto}
+}
+@media(max-width:1100px){:root{--sidebar-width:14rem}}
+@media(max-width:960px){
+ html{scrollbar-gutter:auto}
+ .sidebar{display:none}
+ .app{display:block}
+ .topbar{height:auto;min-height:4.5rem;padding:.75rem max(1rem,env(safe-area-inset-left));gap:.75rem}
+ .topbar-title{display:none}
+ .topbar-identity{gap:.75rem;flex:1}
+ .mobile-menu-toggle{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:3rem;padding:.625rem .875rem;border:1px solid #cddbc6;border-radius:.75rem;background:var(--surface-raised);color:var(--green);font-size:.9375rem;font-weight:650}
+ .mobile-menu-toggle>span{font-size:1.125rem}
+ .mobile-brand{display:block;text-decoration:none;font-size:1.25rem;letter-spacing:-.04em;font-weight:750}
+ .mobile-brand span{color:#426b37}
+ .top-right{gap:0;min-width:0}
+ .account-shortcut{min-height:3rem;padding:.625rem .75rem}
+ .account-shortcut .avatar{display:none}
+ .account-shortcut #account-shortcut-label{display:block;max-width:10rem;font-size:.8125rem;white-space:normal;line-height:1.4}
+ main,.home-active main,.learning-active main{padding:2rem var(--space-page) 2.5rem;max-width:58rem}
+ .home-hero{grid-template-columns:1fr;padding:2rem;gap:1.5rem}
+ .home-hero-copy>p{font-size:1rem;line-height:1.7}
+ .home-step-grid{grid-template-columns:1fr;gap:1rem}
+ .home-step{padding:1.5rem}
+ .home-section-heading{display:block}
+ .home-section-heading>p{margin-top:.875rem}
+ .home-shortcuts{grid-template-columns:1fr}
+ .module-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .entry-page{grid-template-columns:1fr}
+ .entry-story{min-height:auto;padding:2rem var(--space-page)}
+ .entry-story-copy{max-width:38rem;margin:0;padding:1.5rem 0 0;align-self:flex-start}
+ .entry-story h1{font-size:clamp(1.875rem,5vw,2.75rem);margin:1rem 0 .75rem;max-width:20ch}
+ .entry-story h1 br{display:none}
+ .entry-story-copy>p{font-size:1rem;max-width:38rem}
+ .entry-kicker{font-size:.75rem;line-height:1.5}
+ .entry-orbit{display:none}
+ .entry-signature{margin-top:1rem}
+ .entry-access{padding:2rem var(--space-page) max(2rem,env(safe-area-inset-bottom))}
+ .access-card{max-width:32rem}
+ .access-card h2{font-size:2rem;max-width:20ch}
+ .mobile-menu{width:min(25rem,calc(100% - 2rem));height:calc(100dvh - 2rem);max-height:calc(100dvh - 2rem);margin:1rem;max-width:none}
+ .mobile-menu-header{padding:1.25rem;gap:1rem}
+ .mobile-menu-body{padding:1rem .75rem}
+ .mobile-menu nav{gap:.75rem}
+ .mobile-menu .nav-group summary,.mobile-menu .nav-items a{min-height:3rem;font-size:.9375rem}
+ .mobile-menu .nav-items{padding:.25rem .5rem .75rem;display:grid;gap:.5rem}
+ .mobile-menu .nav-items a{margin:0;padding:.75rem;line-height:1.5}
+ .mobile-menu-footer{padding:1rem 1.25rem max(1rem,env(safe-area-inset-bottom));font-size:.75rem}
+ .modules-dialog{width:calc(100% - 2rem);height:calc(100dvh - 2rem);max-height:calc(100dvh - 2rem);border-radius:var(--radius-card)}
+ .modules-dialog-header{padding:1.5rem;gap:1rem}
+ .modules-dialog-header h2{font-size:1.75rem;line-height:1.25}
+ .modules-dialog-body{padding:1.5rem}
+ .modules-dialog .module-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}
+ .modules-dialog .module-top{height:5rem;flex-direction:row;justify-content:space-between;padding:1rem 1.25rem}
+ .modules-dialog .module-body{padding:1.25rem}
+ .catalog-close{width:3rem;height:3rem;flex-basis:3rem}
+}
+@media(max-width:600px){
+ .topbar{gap:.5rem}
+ .topbar-identity{gap:.625rem}
+ .mobile-brand{font-size:1.125rem}
+ .account-shortcut #account-shortcut-label{max-width:6.25rem;font-size:.75rem}
+ main,.home-active main,.learning-active main{padding-top:1.5rem}
+ .page-head{margin-bottom:1.5rem}
+ h1{font-size:1.875rem;line-height:1.2;letter-spacing:-.035em}
+ .page-head p,.learning-active .page-head p{font-size:1rem;line-height:1.65}
+ .home-hero{padding:1.5rem;gap:1.25rem}
+ .home-hero h1{font-size:clamp(1.875rem,8vw,2.375rem);line-height:1.15}
+ .home-hero-copy>p{font-size:1rem;line-height:1.7}
+ .home-hero .eyebrow{font-size:.75rem;line-height:1.6;letter-spacing:.09em}
+ .home-actions{display:grid;grid-template-columns:1fr;gap:.75rem}
+ .home-actions .btn{width:100%;justify-content:center;padding:.875rem 1rem}
+ .home-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.75rem;margin-top:1.5rem}
+ .home-facts span{font-size:.75rem;line-height:1.5;white-space:normal}
+ .home-facts b{font-size:1.5rem}
+ .home-visual{width:100%;min-height:14rem;max-width:22rem}
+ .home-visual-note{font-size:.75rem;max-width:10rem;line-height:1.5}
+ .home-visual-caption{font-size:.75rem}
+ .home-step{display:block;padding:1.25rem}
+ .home-step>span{display:block;margin-bottom:.75rem}
+ .home-step h3{font-size:1.125rem;margin-bottom:.5rem}
+ .home-how{padding:2rem 0}
+ .home-section-heading h2,.home-modules h2{font-size:1.625rem}
+ .home-modules,.home-start,.home-resume{padding:1.5rem;gap:1rem}
+ .home-start{display:grid;grid-template-columns:2.5rem minmax(0,1fr)}
+ .home-start>div:nth-child(2){min-width:0}
+ .home-start>.btn{grid-column:1/-1;margin:0;width:100%}
+ .home-start h2{font-size:1.25rem;line-height:1.35}
+ .module-grid,.modules-dialog .module-grid{grid-template-columns:minmax(0,1fr);gap:1.25rem}
+ .module-top{height:5rem;padding:1rem 1.25rem}
+ .module-body{padding:1.25rem}
+ .module-body p{min-height:0;margin-bottom:1rem}
+ .module-body .btn{width:100%;justify-content:center;margin-top:1rem}
+ .modules-dialog-header,.modules-dialog-body{padding:1.25rem}
+ .modules-dialog-header p{font-size:.9375rem;line-height:1.65}
+ .modules-dialog .module-body h3{font-size:1.25rem}
+ .modules-dialog .module-body .btn{min-height:3rem;font-size:.9375rem;padding:.875rem 1rem}
+ .focus-card{padding:1.5rem 1.25rem;min-height:0;border-radius:var(--radius-card)}
+ .focus-card>h2{font-size:1.5rem;line-height:1.3;margin-top:.75rem}
+ .focus-card>.eyebrow{font-size:.75rem;line-height:1.5}
+ .focus-copy,.focus-card .mail-body,.focus-card .lesson-choice{font-size:1rem;line-height:1.7}
+ .focus-card .lesson-choice{padding:1rem;align-items:flex-start;margin-bottom:.75rem}
+ .focus-card .choice-letter{margin-top:.125rem}
+ .mini-example,.practice-caption,.focus-details,.focus-card .field,.focus-card .lesson-options legend{font-size:.9375rem;line-height:1.65}
+ .mini-example{padding:1rem}
+ .stage-nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem;padding-top:1.5rem;align-items:stretch}
+ .stage-nav .btn{width:100%;min-width:0;min-height:3rem;padding:.75rem;font-size:.9375rem;white-space:normal;text-align:center}
+ .stage-nav .btn:only-child{grid-column:1/-1}
+ .stage-nav .text-button{width:100%;min-height:3rem;font-size:.9375rem;line-height:1.5}
+ .decision-buttons{gap:.75rem}
+ .decision-buttons .btn{min-height:3rem;font-size:.9375rem}
+ .card,.account-panel{padding:1.25rem;border-radius:var(--radius-card)}
+ .account-panel p,.account-panel label{font-size:1rem;line-height:1.65}
+ .account-actions{gap:.75rem;flex-wrap:wrap}
+ .entry-story{padding:1.5rem 1.25rem}
+ .entry-story .brand small{font-size:.75rem;letter-spacing:.08em}
+ .entry-story h1{font-size:1.875rem;line-height:1.2;max-width:17ch}
+ .entry-story-copy{padding-top:1rem}
+ .entry-story-copy>p{margin-bottom:0;line-height:1.65}
+ .entry-access{padding:1.75rem 1.25rem 2rem}
+ .access-card h2{font-size:1.75rem;line-height:1.25}
+ .access-card>p.muted{font-size:1rem}
+ .access-card .account-tabs{gap:.5rem;margin-bottom:1.5rem}
+ .access-card .account-tabs button{font-size:.9375rem;min-height:3rem}
+ #entry-form{gap:.5rem}
+ #entry-form label{font-size:.9375rem}
+ #entry-form input{min-height:3.25rem;font-size:1rem}
+ .terms-check,.terms-check button,.guest-note{font-size:.875rem;line-height:1.65}
+ .recovery-link{min-height:3rem;margin:1rem 0 .75rem auto;font-size:.875rem;display:flex;align-items:center}
+ .access-primary,.guest-button{min-height:3.25rem;font-size:1rem}
+ .access-footer{margin-top:1.5rem;font-size:.75rem;line-height:1.6}
+ footer{padding:1.5rem var(--space-page) max(1.5rem,env(safe-area-inset-bottom));font-size:.8125rem;line-height:1.65}
+}
+@media(max-width:360px){
+ .mobile-brand{display:none}
+ .home-hero,.home-modules,.home-start,.home-resume{padding:1.25rem}
+ .modules-dialog{width:calc(100% - 1rem);height:calc(100dvh - 1rem);max-height:calc(100dvh - 1rem)}
+ .modules-dialog-header,.modules-dialog-body{padding:1rem}
+ .focus-card{padding:1.25rem 1rem}
+ .entry-story,.entry-access{padding-left:1rem;padding-right:1rem}
+}
