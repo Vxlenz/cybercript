@@ -1,0 +1,2 @@
+const CyberAccount={configured:false,user:null,view:()=>head('TU ESPACIO','Vista de diseño','Solo para comprobar la interfaz.'),bind(){},restore:async()=>{},queueSync(){},logout(){}};
+const CyberEntry={allowed:true,guest:true,start(){document.querySelector('#splash').hidden=true;document.querySelector('#entry-root').hidden=true;document.querySelector('.app').hidden=false;document.querySelector('.app').inert=false;document.body.classList.remove('access-open');document.querySelector('#account-shortcut-label').textContent='Invitado';render()},draw(){},show(){}};
