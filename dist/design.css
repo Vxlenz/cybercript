@@ -55,3 +55,7 @@ main,.home-active main,.learning-active main{justify-content:flex-start;padding:
 .focus-card .lesson-choice,.lesson-choice,.option{border-color:#8395b0}
 .catalog-close,.mobile-menu-toggle{border-color:#8395b0}
 @media(max-width:600px){.modules-dialog .module-body .btn{font-size:1rem;min-height:3rem}}
+/* Finish review: readable lesson guidance and visible keyboard focus. */
+.learning-active .page-head p{color:var(--muted)}
+.home-hero :focus-visible{outline-color:var(--green)}
+.focus-card>.eyebrow,.history-intro .eyebrow{display:none}
