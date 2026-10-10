@@ -10,7 +10,7 @@ const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms));
 function environment(mobile=false){
  const dom=new JSDOM(source('index.html'),{url:'https://example.test/',runScripts:'outside-only',pretendToBeVisual:true});
  const w=dom.window;
- w.matchMedia=q=>({matches:q.includes('reduce')||mobile&&q.includes('760'),addEventListener(){}});
+ w.matchMedia=q=>({matches:q.includes('reduce')||mobile&&/max-width: (760|960)px/.test(q),addEventListener(){}});
  w.scrollTo=()=>{};
  w.HTMLDialogElement.prototype.showModal=function(){this.open=true};
  w.HTMLDialogElement.prototype.close=function(){this.open=false;this.dispatchEvent(new w.Event('close'))};

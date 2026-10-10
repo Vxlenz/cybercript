@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cybercript-brayan.vercel.app/sitemap.xml
