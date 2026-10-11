@@ -21,14 +21,14 @@ function setNavGroup(group,expanded,animate=true){
  const animation=content.animate([
   {height:`${fromHeight}px`,opacity:fromOpacity},
   {height:`${toHeight}px`,opacity:expanded?1:0}
- ],{duration:320,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+ ],{duration:240,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
  navAnimations.set(group,animation);
  animation.onfinish=()=>{
   if(navAnimations.get(group)!==animation)return;
   navAnimations.delete(group);group.open=expanded;animation.cancel();
  };
 }
-function expandNavGroup(current){current.closest('nav').querySelectorAll('.nav-group').forEach(group=>setNavGroup(group,group===current));}
+function expandNavGroup(current,animate=true){current.closest('nav').querySelectorAll('.nav-group').forEach(group=>setNavGroup(group,group===current,animate));}
 function initNavigationGroup(group,index,prefix='desktop'){
  group.removeAttribute('name');
  const content=group.querySelector('.nav-content'),summary=group.querySelector('summary');
@@ -37,8 +37,8 @@ function initNavigationGroup(group,index,prefix='desktop'){
  setNavGroup(group,group.open,false);
  summary.addEventListener('click',event=>{
   event.preventDefault();
-  if(group.dataset.expanded==='true')setNavGroup(group,false);
-  else expandNavGroup(group);
+  if(group.dataset.expanded==='true')setNavGroup(group,false,event.detail!==0);
+  else expandNavGroup(group,event.detail!==0);
  });
 }
 navGroups.forEach((group,index)=>initNavigationGroup(group,index));
@@ -101,7 +101,7 @@ function resumeCard(){
 }
 function home(){return `<section class="home-hero" aria-labelledby="home-title">
  <div class="home-hero-copy"><h1 id="home-title">Tu mundo digital.<br>Más seguro.</h1><p>Aprende a reconocer engaños, cuidar tus datos y proteger tus mensajes. CyberCript convierte la ciberseguridad y la criptografía en prácticas que puedes entender y usar.</p><div class="home-actions"><button class="btn lime" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Explorar módulos <span aria-hidden="true">→</span></button>${btn('Conocer el proyecto','guia','home-secondary')}</div><p class="home-footnote">No necesitas experiencia previa. Empieza a tu ritmo.</p></div>
- <figure class="home-art"><img src="./imagenes/mensajes-protegidos.webp" width="960" height="960" alt="Ilustración de un sobre azul protegido por una llave naranja y hojas con mensajes cifrados." fetchpriority="high"><figcaption>Comprender un mensaje también es aprender a protegerlo.</figcaption></figure>
+ <figure class="home-art"><img src="./imagenes/laboratorio-circuito.svg" width="500" height="430" alt="Circuitos conectan un mensaje, un móvil y documentos con el procesador CC de CyberCript." fetchpriority="high"><figcaption>Tus mensajes, tus dispositivos, tus datos. Aprende a cuidarlos.</figcaption></figure>
  </section>${resumeCard()}
  <section class="home-how" aria-labelledby="how-title"><div class="home-section-heading"><div><h2 id="how-title">De la curiosidad a la práctica.</h2></div><p>No necesitas experiencia previa. Cada módulo te acompaña en pasos cortos.</p></div><div class="home-step-grid">${[['01','Explora una idea','Conoce un concepto con explicaciones breves y ejemplos cotidianos.'],['02','Toma una decisión','Pon a prueba lo aprendido en escenarios y prácticas interactivas.'],['03','Entiende el resultado','Descubre el porqué de cada respuesta y conviértelo en un hábito.']].map(([n,t,p])=>`<article class="home-step"><span>${n}</span><h3>${t}</h3><p>${p}</p></article>`).join('')}</div></section>
  <section class="home-modules" aria-labelledby="home-modules-title"><div><h2 id="home-modules-title">Elige qué quieres descubrir.</h2><p>Abre el catálogo, conoce los siete módulos y entra en el que más te interese.</p><ul class="home-topic-list">${['Phishing','Contraseñas','Cifrado','Privacidad','Malware','Redes','Copias de seguridad'].map(t=>`<li>${t}</li>`).join('')}</ul></div><button class="btn" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Ver todos los módulos <span aria-hidden="true">↗</span></button></section>
@@ -111,12 +111,12 @@ function home(){return `<section class="home-hero" aria-labelledby="home-title">
 // One persistent dialog serves the home page and the sidebar, without changing the learning route.
 const modulesDialog=$('#modules-dialog');
 let moduleReturnFocus=null,moduleCloseAnimation=null,moduleRestoreFocus=true;
-function openModuleCatalog(opener){
+function openModuleCatalog(opener,animate=true){
  if(!CyberEntry.allowed||modulesDialog.open)return;
  moduleReturnFocus=opener.closest?.('#mobile-menu')?$('#mobile-menu-toggle'):opener;CyberUI.closeMobileMenu(false);moduleRestoreFocus=true;
  $('#modules-dialog-progress').textContent=`${completed()} de 7 completados`;
  $('#modules-dialog-body').innerHTML=`<section aria-labelledby="catalog-core-title"><div class="catalog-section-title"><h3 id="catalog-core-title">Empieza con lo esencial</h3><span>01 — 03</span></div><div class="module-grid">${moduleCards()}</div></section><section aria-labelledby="catalog-extra-title"><div class="catalog-section-title"><h3 id="catalog-extra-title">Sigue explorando</h3><span>04 — 07</span></div><div class="module-grid">${extraCards()}</div></section>`;
- modulesDialog.showModal();document.body.classList.add('modules-open');$('#modules-dialog-body').scrollTop=0;
+ modulesDialog.dataset.motion=animate?'on':'off';modulesDialog.showModal();document.body.classList.add('modules-open');$('#modules-dialog-body').scrollTop=0;
  $('#close-modules').focus({preventScroll:true});
 }
 function closeModuleCatalog(restoreFocus=true,animate=true){
@@ -124,11 +124,11 @@ function closeModuleCatalog(restoreFocus=true,animate=true){
  moduleRestoreFocus=restoreFocus;
  const finish=()=>{moduleCloseAnimation=null;modulesDialog.close();};
  if(animate&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof modulesDialog.animate==='function'){
-  moduleCloseAnimation=modulesDialog.animate([{opacity:1,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY(12px) scale(.985)'}],{duration:160,easing:'ease-in',fill:'both'});
+  moduleCloseAnimation=modulesDialog.animate([{opacity:1,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY(12px) scale(.985)'}],{duration:160,easing:'cubic-bezier(.23,1,.32,1)',fill:'both'});
   moduleCloseAnimation.onfinish=()=>{const animation=moduleCloseAnimation;finish();animation.cancel();};
  }else finish();
 }
-modulesDialog.addEventListener('cancel',event=>{event.preventDefault();closeModuleCatalog();});
+modulesDialog.addEventListener('cancel',event=>{event.preventDefault();closeModuleCatalog(true,false);});
 modulesDialog.addEventListener('keydown',event=>CyberUI.trapFocus(modulesDialog,event));
 modulesDialog.addEventListener('close',()=>{document.body.classList.remove('modules-open');if(moduleRestoreFocus){const target=moduleReturnFocus?.isConnected?moduleReturnFocus:$('#main');target?.focus({preventScroll:true});}moduleReturnFocus=null;});
 modulesDialog.addEventListener('click',event=>{
@@ -136,7 +136,7 @@ modulesDialog.addEventListener('click',event=>{
  else if(event.target===modulesDialog){const r=modulesDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeModuleCatalog();}
 });
 $('#close-modules').addEventListener('click',()=>closeModuleCatalog());
-document.addEventListener('click',event=>{const opener=event.target.closest?.('[data-open-modules]');if(opener)openModuleCatalog(opener);});
+document.addEventListener('click',event=>{const opener=event.target.closest?.('[data-open-modules]');if(opener)openModuleCatalog(opener,event.detail!==0);});
 const scenarios=[
 {from:'Soporte Escolar',address:'soporte@cuenta-escolar.example',subject:'Tu cuenta será bloqueada hoy',body:'Hola, estudiante. Detectamos un problema en tu cuenta. Tienes 30 minutos para confirmar tu usuario y contraseña o perderás el acceso a tus clases.',url:'https://verificacion-colegio.example/confirmar',phish:true,why:'La urgencia y la solicitud de tu contraseña son señales de engaño. El nombre del remitente no demuestra su identidad.',clues:['Presiona con un plazo de 30 minutos.','Solicita una contraseña por un enlace no verificado.','El dominio debe verificarse por un canal independiente.'],action:'No abras el enlace. Consulta personalmente al docente o al soporte de la institución.'},
 {from:'Docente de Tecnología',address:'tecnologia@colegio.example',subject:'Material para la próxima clase',body:'Buen día. En la próxima clase trabajaremos seguridad digital. Revisa la guía impresa que entregamos hoy y trae tus preguntas. No necesitas enviar datos ni abrir archivos.',url:null,phish:false,why:'No hay solicitudes de credenciales, enlaces ni presión. El contenido coincide con una actividad presencial. Aun así, el nombre y el correo por sí solos no autentican al remitente.',clues:['Se refiere a una guía entregada en clase.','No pide datos personales ni contraseñas.','No invita a abrir enlaces o adjuntos.'],action:'Si no recuerdas la actividad, confírmala directamente con el docente.'},
