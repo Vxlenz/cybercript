@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-11",
+  "title": "CyberCript · laboratorio de circuitos",
+  "extensions": {
+    "source": {
+      "normativeStylesheet": "dist/design.css",
+      "baseStylesheet": "dist/style.css",
+      "loadOrder": [
+        "dist/style.css",
+        "dist/design.css"
+      ],
+      "visualProvenance": "docs/visual-assets.md",
+      "method": "Revisión de código y pruebas locales; la revisión visual en navegador de esta versión quedó bloqueada por permiso.",
+      "impeccableLauncherExecuted": false,
+      "impeccableDetectorExecuted": false
+    },
+    "motion": {
+      "disclosureMs": 240,
+      "modalEnterMs": 240,
+      "modalExitMs": 160,
+      "keyboardAnimation": false,
+      "reducedMotion": true,
+      "heightAnimationException": "Cuerpo del disclosure para recoloque fluido, nunca ancho de sidebar."
+    },
+    "tokens": {
+      "ink": "#10243b",
+      "primary": "#1269a8",
+      "circuit": "#70e0dc",
+      "paper": "#f1f6fa",
+      "muted": "#506578",
+      "sidebarWidth": "16rem",
+      "displayFont": "Sora",
+      "bodyFont": "Source Sans 3"
+    }
+  },
+  "components": [
+    {
+      "name": "Acción principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "html": "<button class=\"ds-primary\">Explorar módulos</button>",
+      "css": ".ds-primary{border:1px solid transparent;border-radius:.5rem;background:#1269a8;color:white;padding:.875rem 1.25rem;min-height:3rem;font:600 1rem/1.4 \"Source Sans 3\",Arial,sans-serif;cursor:pointer}.ds-primary:focus-visible{outline:3px solid #1269a8;outline-offset:4px}"
+    },
+    {
+      "name": "Acción sobre circuito",
+      "kind": "button",
+      "refersTo": "hero-cta",
+      "html": "<button class=\"ds-circuit\">Explorar módulos</button>",
+      "css": ".ds-circuit{border:0;border-radius:.5rem;background:#70e0dc;color:#10243b;padding:.875rem 1.25rem;min-height:3rem;font:600 1rem/1.4 \"Source Sans 3\",Arial,sans-serif;cursor:pointer}.ds-circuit:focus-visible{outline:3px solid #70e0dc;outline-offset:4px}"
+    },
+    {
+      "name": "Estado de módulo",
+      "kind": "custom",
+      "refersTo": "module-state",
+      "html": "<span class=\"ds-state\">Sin empezar</span>",
+      "css": ".ds-state{border-radius:4px;background:#e2eff5;color:#10243b;font:600 .8125rem/1.5 \"Source Sans 3\",Arial,sans-serif;padding:3px 7px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "El laboratorio de conexiones protegidas",
+    "overview": "Dirección: un laboratorio de conexiones protegidas. La portada muestra el monograma CC como procesador, enlazado mediante pistas de circuito a mensajes, documentos y dispositivos. Navegación, acceso y portada comparten el mismo azul profundo y cian; las prácticas son un espacio claro de lectura y experimentación.\n\nFuente de verdad: `dist/design.css`, cargada después de `dist/style.css`. El usuario delegó las decisiones y autorizó cambios drásticos. No se ejecutó un motor de diseño externo.",
+    "keyCharacteristics": [
+      "Circuitos originales integrados con el monograma CC.",
+      "Lectura clara y navegación estable.",
+      "Interacciones rápidas y teclado inmediato."
+    ],
+    "dos": [
+      "Mantener ancho de 16rem y foco visible.",
+      "Respetar movimiento reducido."
+    ],
+    "donts": [
+      "No añadir telemetría inventada ni glitches.",
+      "No publicar fixtures o secretos."
+    ]
+  }
+}

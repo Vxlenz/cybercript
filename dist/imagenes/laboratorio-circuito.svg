@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 430" fill="none">
+  <title>CyberCript: conexiones que protegen tus datos</title>
+  <g stroke="#294a62" stroke-width="1.5">
+    <path d="M0 58h97l39 39h73M26 396v-58l70-70v-41M500 42h-75l-61 61v40M500 375h-72l-50-50v-64M66 0v26l42 42M418 430v-37l-28-28M0 161h53M500 240h-49"/>
+    <circle cx="209" cy="97" r="4"/><circle cx="96" cy="227" r="4"/><circle cx="364" cy="143" r="4"/><circle cx="378" cy="261" r="4"/>
+  </g>
+  <g stroke="#70e0dc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M101 131h37l49 49h43M81 149h36l48 48h65M415 119h-28l-50 50h-52M435 139h-34l-48 48h-68M108 313h31l43-43h48M92 333h60l45-45h33M393 311h-38l-46-46h-28M418 328h-49l-45-45h-43"/>
+    <circle cx="101" cy="131" r="4" fill="#70e0dc"/><circle cx="435" cy="139" r="4" fill="#70e0dc"/><circle cx="92" cy="333" r="4" fill="#70e0dc"/><circle cx="418" cy="328" r="4" fill="#70e0dc"/>
+  </g>
+  <path d="m250 78 122 70v141l-122 70-122-70V148Z" stroke="#45677e" stroke-width="1"/>
+  <path d="m250 105 99 57v113l-99 57-99-57V162Z" fill="#132f46" stroke="#294a62"/>
+  <g stroke="#70e0dc" stroke-width="3">
+    <path d="M214 149v-17M237 149v-17M260 149v-17M283 149v-17M214 284v17M237 284v17M260 284v17M283 284v17M182 183h-17M182 206h-17M182 229h-17M182 252h-17M317 183h17M317 206h17M317 229h17M317 252h17"/>
+  </g>
+  <rect x="182" y="149" width="135" height="135" rx="18" fill="#081828" stroke="#70e0dc" stroke-width="2"/>
+  <rect x="194" y="161" width="111" height="111" rx="11" stroke="#294a62"/>
+  <g stroke="#70e0dc" stroke-width="8" stroke-linecap="square" stroke-linejoin="round">
+    <path d="M249 190h-18l-14 14v23l14 14h18M283 190h-18l-14 14v23l14 14h18"/>
+  </g>
+  <g fill="#183b52" stroke="#45677e" stroke-width="1.5">
+    <rect x="34" y="69" width="68" height="52" rx="8"/><rect x="401" y="54" width="51" height="70" rx="8"/>
+    <rect x="44" y="323" width="63" height="56" rx="8"/><rect x="407" y="317" width="62" height="61" rx="8"/>
+  </g>
+  <g stroke="#bad3e1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m46 83 22 17 22-17M46 108h44M415 66h23M415 96h23M422 112h9M59 339h32M59 350h23M59 361h29M421 329h22v16h-22zM425 363h15M432 345v18"/>
+  </g>
+  <g fill="#70e0dc"><circle cx="135" cy="40" r="3"/><circle cx="344" cy="377" r="3"/><circle cx="458" cy="208" r="3"/></g>
+</svg>

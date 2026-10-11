@@ -73,7 +73,7 @@ const CyberUI=(()=>{
   button.setAttribute('aria-label',`${show?'Ocultar':'Mostrar'} ${button.dataset.passwordLabel||'contraseña'}`);
  });
  function passwordField(id,attributes,label='contraseña'){
-  return `<div class="password-control"><input id="${id}" type="password" ${attributes}><button type="button" data-password-toggle="${id}" data-password-label="${label}" aria-label="Mostrar ${label}" aria-controls="${id}" aria-pressed="false" ${/\bdisabled\b/.test(attributes)?'disabled':''}>Mostrar</button></div>`;
+  return `<div class="password-control"><input id="${id}" name="${id}" type="password" ${attributes}><button type="button" data-password-toggle="${id}" data-password-label="${label}" aria-label="Mostrar ${label}" aria-controls="${id}" aria-pressed="false" ${/\bdisabled\b/.test(attributes)?'disabled':''}>Mostrar</button></div>`;
  }
  return {openMobileMenu,closeMobileMenu,trapFocus,passwordField,icon};
 })();

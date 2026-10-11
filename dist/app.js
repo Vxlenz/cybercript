@@ -21,14 +21,14 @@ function setNavGroup(group,expanded,animate=true){
  const animation=content.animate([
   {height:`${fromHeight}px`,opacity:fromOpacity},
   {height:`${toHeight}px`,opacity:expanded?1:0}
- ],{duration:320,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
+ ],{duration:240,easing:'cubic-bezier(.22,1,.36,1)',fill:'both'});
  navAnimations.set(group,animation);
  animation.onfinish=()=>{
   if(navAnimations.get(group)!==animation)return;
   navAnimations.delete(group);group.open=expanded;animation.cancel();
  };
 }
-function expandNavGroup(current){current.closest('nav').querySelectorAll('.nav-group').forEach(group=>setNavGroup(group,group===current));}
+function expandNavGroup(current,animate=true){current.closest('nav').querySelectorAll('.nav-group').forEach(group=>setNavGroup(group,group===current,animate));}
 function initNavigationGroup(group,index,prefix='desktop'){
  group.removeAttribute('name');
  const content=group.querySelector('.nav-content'),summary=group.querySelector('summary');
@@ -37,8 +37,8 @@ function initNavigationGroup(group,index,prefix='desktop'){
  setNavGroup(group,group.open,false);
  summary.addEventListener('click',event=>{
   event.preventDefault();
-  if(group.dataset.expanded==='true')setNavGroup(group,false);
-  else expandNavGroup(group);
+  if(group.dataset.expanded==='true')setNavGroup(group,false,event.detail!==0);
+  else expandNavGroup(group,event.detail!==0);
  });
 }
 navGroups.forEach((group,index)=>initNavigationGroup(group,index));
@@ -91,32 +91,32 @@ function recordLearningPosition(id,n){
 }
 function renderModuleCard(m){
  const progress=moduleState(m.id),target=progress.started&&!progress.done?stageUrl(m.id,resumableStage(m.id,state.positions[m.id]??progress.stage)):'#'+m.id;
- return `<article class="module-card"><div class="module-top ${m.color}"><span class="module-icon" aria-hidden="true">${CyberUI.icon(m.id)}</span><span class="module-index">${m.number}</span></div><div class="module-body"><h3>${m.title}</h3><p>${m.short}</p><div class="meta"><span>${m.kind}</span><span class="module-state ${progress.done?'is-complete':progress.started?'is-started':'is-pending'}"><i aria-hidden="true">${progress.done?'✓':progress.started?'◔':'○'}</i> ${progress.status}</span></div><div class="catalog-meter" role="progressbar" aria-label="Avance de ${m.title}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}"><span style="width:${progress.percent}%"></span></div><small class="catalog-stage">${progress.done?'Actividad completada':progress.started?`Paso ${progress.stage+1} de ${MODULE_STAGES[m.id]}`:'Empieza cuando quieras'} <b>${progress.percent}%</b></small><a class="btn ghost" href="${target}">${progress.done?'Volver a practicar':progress.started?'Continuar módulo':'Abrir módulo'} <span aria-hidden="true">↗</span></a></div></article>`;
+ return `<article class="module-card"><div class="module-top ${m.color}"><img class="module-art" src="./imagenes/modulo-${m.id}.svg" alt="" width="300" height="140"><span class="module-index">${m.number}</span></div><div class="module-body"><h3>${m.title}</h3><p>${m.short}</p><div class="meta"><span>${m.kind}</span><span class="module-state ${progress.done?'is-complete':progress.started?'is-started':'is-pending'}"><i aria-hidden="true">${progress.done?'✓':progress.started?'◔':'○'}</i> ${progress.status}</span></div><div class="catalog-meter" role="progressbar" aria-label="Avance de ${m.title}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${progress.percent}"><span style="width:${progress.percent}%"></span></div><small class="catalog-stage">${progress.done?'Actividad completada':progress.started?`Paso ${progress.stage+1} de ${MODULE_STAGES[m.id]}`:'Empieza cuando quieras'} <b>${progress.percent}%</b></small><a class="btn ghost" href="${target}">${progress.done?'Volver a practicar':progress.started?'Continuar módulo':'Abrir módulo'} <span aria-hidden="true">↗</span></a></div></article>`;
 }
 const moduleCards=()=>catalogModules().slice(0,3).map(renderModuleCard).join('');
 function resumeCard(){
  const point=resumeTarget();if(!point)return '';
  const info=catalogModules().find(m=>m.id===point.module),progress=moduleState(point.module);
- return `<section class="home-resume" aria-labelledby="resume-title"><div class="resume-symbol" aria-hidden="true">${CyberUI.icon(info.id)}</div><div class="resume-copy"><span class="eyebrow">RETOMA TU RECORRIDO</span><h2 id="resume-title">${info.title}</h2><p>Paso ${point.stage+1} de ${MODULE_STAGES[point.module]} · ${CyberEntry.guest?'Disponible durante esta sesión':CyberAccount.user?.emailVerified?'Tu avance se sincroniza con tu cuenta':'Copia en este dispositivo; verifica tu correo para activar la nube'}</p></div><a class="btn lime" id="resume-learning" href="${stageUrl(point.module,point.stage)}">Continuar aprendiendo <span aria-hidden="true">→</span></a><div class="resume-meter" aria-hidden="true"><span style="width:${progress.percent}%"></span></div></section>`;
+ return `<section class="home-resume" aria-labelledby="resume-title"><div class="resume-symbol" aria-hidden="true">${CyberUI.icon(info.id)}</div><div class="resume-copy"><span class="resume-label">Continúa donde lo dejaste</span><h2 id="resume-title">${info.title}</h2><p>Paso ${point.stage+1} de ${MODULE_STAGES[point.module]} · ${CyberEntry.guest?'Disponible durante esta sesión':CyberAccount.user?.emailVerified?'Tu avance se sincroniza con tu cuenta':'Copia en este dispositivo; verifica tu correo para activar la nube'}</p></div><a class="btn lime" id="resume-learning" href="${stageUrl(point.module,point.stage)}">Continuar aprendiendo <span aria-hidden="true">→</span></a><div class="resume-meter" aria-hidden="true"><span style="width:${progress.percent}%"></span></div></section>`;
 }
 function home(){return `<section class="home-hero" aria-labelledby="home-title">
- <div class="home-hero-copy"><span class="eyebrow">BIENVENIDO A CYBERCRIPT</span><h1 id="home-title">Entiende los riesgos.<br><span>Protege lo que importa.</span></h1><p>CyberCript es tu laboratorio de ciberseguridad y criptografía. Aprende a reconocer engaños, cuidar tus datos y proteger tus mensajes con prácticas guiadas, a tu ritmo.</p><div class="home-actions"><button class="btn lime" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Explorar módulos <span aria-hidden="true">↗</span></button>${btn('Conocer el proyecto','guia','home-secondary')}</div><div class="home-facts"><span><b>07</b> módulos para explorar</span><span><b>01</b> idea a la vez</span><span><b>∞</b> curiosidad</span></div></div>
- <div class="home-visual" aria-hidden="true"><div class="home-visual-grid"></div><div class="home-security-ring"></div><div class="home-shield"><svg viewBox="0 0 160 180" fill="none"><path d="M80 12 142 36v48c0 40-27 68-62 84-35-16-62-44-62-84V36Z" fill="#d8f980"/><path d="M80 25 130 45v39c0 31-19 55-50 71-31-16-50-40-50-71V45Z" stroke="#245b4e" stroke-width="2"/><rect x="57" y="74" width="46" height="37" rx="9" fill="#182c2d"/><path d="M65 74V61a15 15 0 0 1 30 0v13" stroke="#182c2d" stroke-width="7"/><circle cx="80" cy="90" r="4" fill="#d8f980"/><path d="M80 93v6" stroke="#d8f980" stroke-width="3" stroke-linecap="round"/></svg></div><span class="home-visual-note home-note-top"><i>✓</i> Reconoce el engaño</span><span class="home-visual-note home-note-bottom"><i>⌁</i> Descubre el cifrado</span><div class="home-visual-caption"><span class="home-status-dot"></span> El conocimiento es tu primera defensa.</div></div>
+ <div class="home-hero-copy"><h1 id="home-title">Tu mundo digital.<br>Más seguro.</h1><p>Aprende a reconocer engaños, cuidar tus datos y proteger tus mensajes. CyberCript convierte la ciberseguridad y la criptografía en prácticas que puedes entender y usar.</p><div class="home-actions"><button class="btn lime" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Explorar módulos <span aria-hidden="true">→</span></button>${btn('Conocer el proyecto','guia','home-secondary')}</div><p class="home-footnote">No necesitas experiencia previa. Empieza a tu ritmo.</p></div>
+ <figure class="home-art"><img src="./imagenes/laboratorio-circuito.svg" width="500" height="430" alt="Circuitos conectan un mensaje, un móvil y documentos con el procesador CC de CyberCript." fetchpriority="high"><figcaption>Tus mensajes, tus dispositivos, tus datos. Aprende a cuidarlos.</figcaption></figure>
  </section>${resumeCard()}
- <section class="home-how" aria-labelledby="how-title"><div class="home-section-heading"><div><span class="eyebrow">APRENDER HACIENDO</span><h2 id="how-title">De la curiosidad a la práctica.</h2></div><p>No necesitas experiencia previa. Cada módulo te acompaña en pasos cortos.</p></div><div class="home-step-grid">${[['01','Explora una idea','Conoce un concepto con explicaciones breves y ejemplos cotidianos.'],['02','Toma una decisión','Pon a prueba lo aprendido en escenarios y prácticas interactivas.'],['03','Entiende el resultado','Descubre el porqué de cada respuesta y conviértelo en un hábito.']].map(([n,t,p])=>`<article class="home-step"><span>${n}</span><h3>${t}</h3><p>${p}</p></article>`).join('')}</div></section>
- <section class="home-modules" aria-labelledby="home-modules-title"><div><span class="eyebrow">TU LABORATORIO, TU RITMO</span><h2 id="home-modules-title">Elige qué quieres descubrir.</h2><p>Abre el catálogo, conoce los siete módulos y entra en el que más te interese.</p><ul class="home-topic-list">${['Phishing','Contraseñas','Cifrado','Privacidad','Malware','Redes','Copias de seguridad'].map(t=>`<li>${t}</li>`).join('')}</ul></div><button class="btn" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Ver todos los módulos <span aria-hidden="true">↗</span></button></section>
- <section class="home-start" aria-labelledby="home-start-title"><div class="home-start-icon" aria-hidden="true">${state.pre?'✓':'→'}</div><div><span class="eyebrow">${state.pre?'SIGUE DESCUBRIENDO':'¿POR DÓNDE EMPEZAR?'}</span><h2 id="home-start-title">${state.pre?'Ya diste el primer paso.':'Conoce tu punto de partida.'}</h2><p>${state.pre?'Explora los módulos y vuelve a Mis resultados para consultar lo que has aprendido.':'Un diagnóstico de seis preguntas te ayudará a descubrir lo que ya sabes antes de practicar.'}</p><small>${CyberEntry.guest?'Estás como invitado: el avance dura mientras mantengas esta página abierta.':'Tu progreso está vinculado a tu cuenta.'}</small></div>${state.pre?'<button class="btn ghost" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Elegir un módulo ↗</button>':btn('Hacer diagnóstico','evaluacion','ghost')}</section>
+ <section class="home-how" aria-labelledby="how-title"><div class="home-section-heading"><div><h2 id="how-title">De la curiosidad a la práctica.</h2></div><p>No necesitas experiencia previa. Cada módulo te acompaña en pasos cortos.</p></div><div class="home-step-grid">${[['01','Explora una idea','Conoce un concepto con explicaciones breves y ejemplos cotidianos.'],['02','Toma una decisión','Pon a prueba lo aprendido en escenarios y prácticas interactivas.'],['03','Entiende el resultado','Descubre el porqué de cada respuesta y conviértelo en un hábito.']].map(([n,t,p])=>`<article class="home-step"><span>${n}</span><h3>${t}</h3><p>${p}</p></article>`).join('')}</div></section>
+ <section class="home-modules" aria-labelledby="home-modules-title"><div><h2 id="home-modules-title">Elige qué quieres descubrir.</h2><p>Abre el catálogo, conoce los siete módulos y entra en el que más te interese.</p><ul class="home-topic-list">${['Phishing','Contraseñas','Cifrado','Privacidad','Malware','Redes','Copias de seguridad'].map(t=>`<li>${t}</li>`).join('')}</ul></div><button class="btn" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Ver todos los módulos <span aria-hidden="true">↗</span></button></section>
+ <section class="home-start" aria-labelledby="home-start-title"><div class="home-start-icon" aria-hidden="true">${state.pre?'✓':'→'}</div><div><h2 id="home-start-title">${state.pre?'Ya diste el primer paso.':'Conoce tu punto de partida.'}</h2><p>${state.pre?'Explora los módulos y vuelve a Mis resultados para consultar lo que has aprendido.':'Un diagnóstico de seis preguntas te ayudará a descubrir lo que ya sabes antes de practicar.'}</p><small>${CyberEntry.guest?'Estás como invitado: el avance dura mientras mantengas esta página abierta.':'Tu progreso está vinculado a tu cuenta.'}</small></div>${state.pre?'<button class="btn ghost" data-open-modules aria-haspopup="dialog" aria-controls="modules-dialog">Elegir un módulo ↗</button>':btn('Hacer diagnóstico','evaluacion','ghost')}</section>
  <section class="home-shortcuts" aria-label="Sigue explorando"><a href="#historia"><span aria-hidden="true">${CyberUI.icon("historia")}</span><div><h3>Historia digital</h3><p>Las ideas y acontecimientos que cambiaron la seguridad.</p></div><b aria-hidden="true">↗</b></a><a href="#resultados"><span aria-hidden="true">${CyberUI.icon("resultados")}</span><div><h3>Tu aprendizaje</h3><p>${completed()} de 7 módulos completados. Consulta tus resultados.</p></div><b aria-hidden="true">↗</b></a><a href="#cuenta"><span aria-hidden="true">${CyberUI.icon("cuenta")}</span><div><h3>Mi cuenta</h3><p>${CyberAccount.user?'Gestiona tu perfil y la sincronización de tu progreso.':'Crea tu espacio para guardar y retomar tu progreso.'}</p></div><b aria-hidden="true">↗</b></a></section>`;}
 
 // One persistent dialog serves the home page and the sidebar, without changing the learning route.
 const modulesDialog=$('#modules-dialog');
 let moduleReturnFocus=null,moduleCloseAnimation=null,moduleRestoreFocus=true;
-function openModuleCatalog(opener){
+function openModuleCatalog(opener,animate=true){
  if(!CyberEntry.allowed||modulesDialog.open)return;
  moduleReturnFocus=opener.closest?.('#mobile-menu')?$('#mobile-menu-toggle'):opener;CyberUI.closeMobileMenu(false);moduleRestoreFocus=true;
  $('#modules-dialog-progress').textContent=`${completed()} de 7 completados`;
  $('#modules-dialog-body').innerHTML=`<section aria-labelledby="catalog-core-title"><div class="catalog-section-title"><h3 id="catalog-core-title">Empieza con lo esencial</h3><span>01 — 03</span></div><div class="module-grid">${moduleCards()}</div></section><section aria-labelledby="catalog-extra-title"><div class="catalog-section-title"><h3 id="catalog-extra-title">Sigue explorando</h3><span>04 — 07</span></div><div class="module-grid">${extraCards()}</div></section>`;
- modulesDialog.showModal();document.body.classList.add('modules-open');$('#modules-dialog-body').scrollTop=0;
+ modulesDialog.dataset.motion=animate?'on':'off';modulesDialog.showModal();document.body.classList.add('modules-open');$('#modules-dialog-body').scrollTop=0;
  $('#close-modules').focus({preventScroll:true});
 }
 function closeModuleCatalog(restoreFocus=true,animate=true){
@@ -124,19 +124,19 @@ function closeModuleCatalog(restoreFocus=true,animate=true){
  moduleRestoreFocus=restoreFocus;
  const finish=()=>{moduleCloseAnimation=null;modulesDialog.close();};
  if(animate&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&typeof modulesDialog.animate==='function'){
-  moduleCloseAnimation=modulesDialog.animate([{opacity:1,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY(12px) scale(.985)'}],{duration:160,easing:'ease-in',fill:'both'});
+  moduleCloseAnimation=modulesDialog.animate([{opacity:1,transform:'translateY(0) scale(1)'},{opacity:0,transform:'translateY(12px) scale(.985)'}],{duration:160,easing:'cubic-bezier(.23,1,.32,1)',fill:'both'});
   moduleCloseAnimation.onfinish=()=>{const animation=moduleCloseAnimation;finish();animation.cancel();};
  }else finish();
 }
-modulesDialog.addEventListener('cancel',event=>{event.preventDefault();closeModuleCatalog();});
+modulesDialog.addEventListener('cancel',event=>{event.preventDefault();closeModuleCatalog(true,false);});
 modulesDialog.addEventListener('keydown',event=>CyberUI.trapFocus(modulesDialog,event));
 modulesDialog.addEventListener('close',()=>{document.body.classList.remove('modules-open');if(moduleRestoreFocus){const target=moduleReturnFocus?.isConnected?moduleReturnFocus:$('#main');target?.focus({preventScroll:true});}moduleReturnFocus=null;});
 modulesDialog.addEventListener('click',event=>{
  if(event.target.closest?.('a[href^="#"]'))closeModuleCatalog(false,false);
  else if(event.target===modulesDialog){const r=modulesDialog.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)closeModuleCatalog();}
 });
-$('#close-modules').addEventListener('click',()=>closeModuleCatalog());
-document.addEventListener('click',event=>{const opener=event.target.closest?.('[data-open-modules]');if(opener)openModuleCatalog(opener);});
+$('#close-modules').addEventListener('click',event=>closeModuleCatalog(true,event.detail!==0));
+document.addEventListener('click',event=>{const opener=event.target.closest?.('[data-open-modules]');if(opener)openModuleCatalog(opener,event.detail!==0);});
 const scenarios=[
 {from:'Soporte Escolar',address:'soporte@cuenta-escolar.example',subject:'Tu cuenta será bloqueada hoy',body:'Hola, estudiante. Detectamos un problema en tu cuenta. Tienes 30 minutos para confirmar tu usuario y contraseña o perderás el acceso a tus clases.',url:'https://verificacion-colegio.example/confirmar',phish:true,why:'La urgencia y la solicitud de tu contraseña son señales de engaño. El nombre del remitente no demuestra su identidad.',clues:['Presiona con un plazo de 30 minutos.','Solicita una contraseña por un enlace no verificado.','El dominio debe verificarse por un canal independiente.'],action:'No abras el enlace. Consulta personalmente al docente o al soporte de la institución.'},
 {from:'Docente de Tecnología',address:'tecnologia@colegio.example',subject:'Material para la próxima clase',body:'Buen día. En la próxima clase trabajaremos seguridad digital. Revisa la guía impresa que entregamos hoy y trae tus preguntas. No necesitas enviar datos ni abrir archivos.',url:null,phish:false,why:'No hay solicitudes de credenciales, enlaces ni presión. El contenido coincide con una actividad presencial. Aun así, el nombre y el correo por sí solos no autentican al remitente.',clues:['Se refiere a una guía entregada en clase.','No pide datos personales ni contraseñas.','No invita a abrir enlaces o adjuntos.'],action:'Si no recuerdas la actividad, confírmala directamente con el docente.'},
