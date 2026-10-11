@@ -33,7 +33,7 @@ spacing:
 
 ## Overview
 
-Dirección: un laboratorio de conexiones protegidas. La portada muestra el monograma CC como procesador, enlazado mediante pistas de circuito a mensajes, documentos y dispositivos. Navegación, acceso y portada comparten el mismo azul profundo y cian; las prácticas son un espacio claro de lectura y experimentación.
+Dirección: un laboratorio de conexiones protegidas. La portada muestra una ilustración 3D de hardware protegido, con una cerradura integrada y pistas de circuito cian. El monograma CC conserva su geometría en la marca y el recurso vectorial del laboratorio. Navegación, acceso y portada comparten el mismo azul profundo y cian; las prácticas son un espacio claro de lectura y experimentación.
 
 Fuente de verdad: `dist/design.css`, cargada después de `dist/style.css`. El usuario delegó las decisiones y autorizó cambios drásticos. No se ejecutó un motor de diseño externo.
 
@@ -43,7 +43,7 @@ Azul profundo para identidad y texto; azul activo para acciones sobre fondos cla
 
 ## Typography
 
-Sora 600/700 en títulos, Source Sans 3 400/600/700 en lectura, alojadas localmente con SIL OFL. Títulos equilibrados con `text-wrap:balance`; párrafos `pretty` y máximo general 65ch. Cuerpo de 17px. Números de resultados y progreso con cifras tabulares. Sin etiquetas decorativas en mayúsculas. Se conservan las tres numeraciones porque explican un proceso ordenado.
+Sora 600/700 en títulos, Source Sans 3 400/600/700 en lectura, alojadas localmente con SIL OFL. Títulos Sora con espaciado -.045em en portada y -.025em en módulos, equilibrados con `text-wrap:balance`; párrafos `pretty` y máximo general 65ch. Cuerpo de 17px. Números de resultados y progreso con cifras tabulares. Sin etiquetas decorativas en mayúsculas. Se conservan las tres numeraciones porque explican un proceso ordenado.
 
 ## Layout
 
@@ -51,7 +51,7 @@ Sidebar siempre 16rem/256px cuando está visible; width, min-width, max-width y 
 
 ## Elevation & Depth
 
-Circuitos SVG ligeros con baja opacidad, conexiones ortogonales y nodos; sin telemetría inventada. Ilustración principal vectorial sin imagen de fondo fotográfica. Superficies de lectura blancas, bordes fríos y sombra leve solo en hover del catálogo. Diálogos con backdrop de tinta y desenfoque de 4px.
+Circuitos SVG ligeros con baja opacidad, conexiones ortogonales y nodos; sin telemetría inventada. Ilustración principal 3D transparente, exportada a WebP 960×768 sin recortar. Los textos y botones se mantienen en HTML. Superficies de lectura blancas, bordes fríos y sombra leve solo en hover del catálogo. Diálogos con backdrop de tinta y desenfoque de 4px.
 
 ## Shapes
 
@@ -59,7 +59,7 @@ Controles de radio .5rem, campos .625rem, tarjetas .875rem y portada 1.25rem. El
 
 ## Components
 
-Botones principales azules con texto blanco; portada y reanudación cian con texto tinta. Pulsación scale(.98), sin movimiento con reduced motion. Catálogo conserva modal con cierre, Escape y retorno de foco. Navegación con disclosure reversible de 240ms; teclado expande instantáneamente. Se conserva animación de altura limitada al cuerpo de la navegación para que el contenido de los grupos se recoloque sin saltos; no se anima el ancho. Modal entra 240ms, sale 160ms con ease-out, Escape cierra instantáneamente. No hay animación repetida de cada sección ni ripple decorativo. Acceso tiene tarjeta de formulario propia, etiquetas visibles, autocompletado y controles de 44px o mayores.
+Botones principales azules con texto blanco; portada y reanudación cian con texto tinta. CTA de al menos 52px, icono final en círculo no interactivo y acciones del catálogo alineadas con justify-content:space-between. Metadata envuelve cuando falta espacio. La tarjeta de acceso incorpora un marco exterior frío y una sombra suave; su tipografía tiene ritmo más abierto. Pulsación scale(.98), sin movimiento con reduced motion. Catálogo conserva modal con cierre, Escape y retorno de foco. Navegación con disclosure reversible de 240ms; teclado expande instantáneamente. Se conserva animación de altura limitada al cuerpo de la navegación para que el contenido de los grupos se recoloque sin saltos; no se anima el ancho. Modal entra 240ms, sale 160ms con ease-out, Escape cierra instantáneamente. No hay animación repetida de cada sección ni ripple decorativo. Acceso tiene tarjeta de formulario propia, etiquetas visibles, autocompletado y controles de 44px o mayores.
 
 ## Do's and Don'ts
 
@@ -82,3 +82,19 @@ Fuentes consultadas desde los dos catálogos facilitados por el usuario:
 - Reglas actuales de revisión: https://github.com/vercel-labs/web-interface-guidelines/blob/main/command.md
 
 UI UX Pro Max: las dos consultas de sistema global resultaron en estilos cyberpunk/AI que no encajaban con aprendizaje accesible. No se persistieron. Se aplicaron sus prioridades generales de accesibilidad y el resultado verificado de UX sobre movimiento reducido y sensibilidad al movimiento. Huashu Design se leyó para determinar alcance: excluye aplicaciones web de producción con backend. Impeccable fue utilizado en la revisión anterior; no se afirma ejecución de su launcher o detector.
+
+## Revisión adicional de skills
+
+- Banner Design, de nextlevelbuilder: arte de portada con texto editable, una acción dominante, máximo de dos familias, dimensiones y espacio seguro.
+- Frontend UI Engineering, de Addy Osmani: jerarquía semántica, escalas de espaciado y estados accesibles sobre el sistema existente.
+- High-End Visual Design, de Leonxlnx: se tomaron criterios de marcos concéntricos, acento del icono final y ritmo tipográfico. Se omitieron las entradas de scroll de 800ms, microtexto de 10px y los valores transition-all, porque contradicen las guías de accesibilidad y movimiento elegidas.
+- Imagegen Frontend Web: se revisó como flujo de referencias visuales por sección. No se ejecutó su flujo de mockups, porque se entrega una aplicación existente y un recurso propio de portada, no una colección de composiciones raster de la UI.
+- Imagegen integrada: generó el recurso 3D original con transparencia. Prompt exacto y procedencia en docs/visual-assets.md.
+- Faceless Explainer, de HeyGen: revisada para decidir ajuste; su entrega es un vídeo explicativo desde texto. Puede servir para futuras lecciones didácticas, pero no se ejecutó un proyecto de vídeo dentro de este rediseño.
+
+Fuentes adicionales:
+https://github.com/nextlevelbuilder/ui-ux-pro-max-skill/blob/main/.claude/skills/banner-design/SKILL.md
+https://github.com/addyosmani/agent-skills/blob/main/skills/frontend-ui-engineering/SKILL.md
+https://github.com/Leonxlnx/taste-skill/blob/main/skills/soft-skill/SKILL.md
+https://github.com/Leonxlnx/taste-skill/blob/main/skills/imagegen-frontend-web/SKILL.md
+https://github.com/heygen-com/hyperframes/blob/main/skills/faceless-explainer/SKILL.md

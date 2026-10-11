@@ -44,3 +44,7 @@ dist/index.html:2 - theme-color alineado a #10243b.
 dist/design.css - foco, reduced motion, overscroll de modal, cifras tabulares, pulsación y wrapping añadidos.
 
 Se conservaron etiquetas, autocomplete, skip link, botones semánticos, aislamiento de datos y navegación por hash. Se revisó CSS para los breakpoints existentes; las medidas reales y la captura de la nueva interfaz no pudieron verificarse por el bloqueo de permiso del navegador.
+
+## Pulido adicional
+
+La imagen 3D generada se inspeccionó directamente en la salida de imagegen: objeto completo, paleta azul/cian, sin texto ni logos y transparencia. Se exportó a WebP 960×768, 120268 bytes, manteniendo alpha y sin recorte. Botones de catálogo y CTA de 52px, círculo final no interactivo, títulos y párrafos con jerarquía coherente, metadata capaz de envolver. No se afirma nueva verificación visual en navegador; esa limitación continúa.

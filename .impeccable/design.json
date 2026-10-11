@@ -13,7 +13,14 @@
       "visualProvenance": "docs/visual-assets.md",
       "method": "Revisión de código y pruebas locales; la revisión visual en navegador de esta versión quedó bloqueada por permiso.",
       "impeccableLauncherExecuted": false,
-      "impeccableDetectorExecuted": false
+      "impeccableDetectorExecuted": false,
+      "heroAsset": {
+        "file": "dist/imagenes/hardware-seguro.webp",
+        "width": 960,
+        "height": 768,
+        "alpha": true,
+        "promptMetadata": "EXIF ImageDescription"
+      }
     },
     "motion": {
       "disclosureMs": 240,
@@ -31,7 +38,10 @@
       "muted": "#506578",
       "sidebarWidth": "16rem",
       "displayFont": "Sora",
-      "bodyFont": "Source Sans 3"
+      "bodyFont": "Source Sans 3",
+      "ctaMinHeight": "3.25rem",
+      "ctaIconSize": "1.875rem",
+      "heroTracking": "-.045em"
     }
   },
   "components": [
@@ -59,7 +69,7 @@
   ],
   "narrative": {
     "northStar": "El laboratorio de conexiones protegidas",
-    "overview": "Dirección: un laboratorio de conexiones protegidas. La portada muestra el monograma CC como procesador, enlazado mediante pistas de circuito a mensajes, documentos y dispositivos. Navegación, acceso y portada comparten el mismo azul profundo y cian; las prácticas son un espacio claro de lectura y experimentación.\n\nFuente de verdad: `dist/design.css`, cargada después de `dist/style.css`. El usuario delegó las decisiones y autorizó cambios drásticos. No se ejecutó un motor de diseño externo.",
+    "overview": "Hardware protegido y circuitos cian, con una mesa clara de aprendizaje; SVG originales y una ilustración 3D transparente en portada.",
     "keyCharacteristics": [
       "Circuitos originales integrados con el monograma CC.",
       "Lectura clara y navegación estable.",

@@ -1,8 +1,16 @@
+# Ilustración tecnológica de portada · 11/10/2026
+
+dist/imagenes/hardware-seguro.webp: ilustración original generada con la herramienta integrada image_gen. Es arte conceptual de hardware protegido, no un circuito técnico ni un producto real. Conserva transparencia, fue escalada proporcionalmente sin recorte y exportada a WebP calidad 88. El prompt exacto se registra también en EXIF ImageDescription.
+
+Prompt final:
+
+Use case: stylized-concept. Asset type: original hero illustration for CyberCript, an educational cybersecurity website. Primary request: an elegant sculptural technology illustration of a secure microprocessor on a small precisely machined circuit board, with a compact keyhole embedded in the processor and fine cyan circuit traces radiating outward. This is symbolic editorial art, not a technical diagram or a UI mockup. Scene/backdrop: genuine transparent background, isolated complete object, no rectangular backdrop. Subject: one cohesive graphite navy hardware assembly, layered anodized aluminum board and subtly translucent icy cyan chip cover, clean etched conductors, a few restrained contact pins. Style/medium: premium studio 3D product rendering, physically believable matte surfaces, precise bevels, refined minimal engineering aesthetic. Composition/framing: landscape 5:4 composition, gentle isometric three-quarter overhead view, main object centered and completely visible with at least 12 percent clear padding on all sides. Lighting/mood: soft broad studio lighting from upper left, restrained highlights, no harsh bloom. Color palette: navy #10243b and #081828, muted blue #1269a8, cyan #70e0dc, tiny pale icy details. Materials/textures: brushed graphite aluminum, satin metal, frosted translucent cyan acrylic. Constraints: no letters, no words, no logo, no watermark, no labels, no numbers, no arrows, no humans, no extra floating icon tiles, no violet, no green, no orange, no scanlines, no glitch, no large neon halo. The illustration must remain clear on a deep navy website background.
+
 # Activos del diseño de circuitos · 11/10/2026
 
 `laboratorio-circuito.svg`, `circuitos.svg` y la nueva versión de `acceso-seguro.svg`: gráficos vectoriales originales escritos para CyberCript, sin dependencias externas. Representan pistas, nodos, dispositivos y el monograma CC. Los siete `modulo-*.svg` conservaron sus conceptos con paleta azul/cian. El logo conserva su geometría.
 
-La portada utiliza ahora el SVG del laboratorio. La ilustración raster anterior se conserva como recurso del proyecto, con su procedencia y prompt originales: no se presenta como ilustración de la nueva paleta.
+El SVG del laboratorio queda como recurso vectorial; la portada utiliza la ilustración 3D transparente. La ilustración raster anterior se conserva como recurso del proyecto, con su procedencia y prompt originales: no se presenta como ilustración de la nueva paleta.
 
 # Procedencia visual
 
